@@ -32,6 +32,9 @@ public class Cli {
 			} else if(command.equals("useraccount")){
 				String name =  System.getProperty("user.name");
 				output = name;
+			} else if(command.equals("userhome")){
+				String userHome = System.getProperty("user.home");
+				output = userHome;
 			}
 			 else {
 				// String concatenation
