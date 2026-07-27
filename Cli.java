@@ -29,6 +29,9 @@ public class Cli {
 			} else if(command.equals("datetime")){
 				String dateTime = LocalDateTime.now().toString();
 				output = dateTime;
+			} else if(command.equals("useraccount")){
+				String name =  System.getProperty("user.name");
+				output = name;
 			}
 			 else {
 				// String concatenation
