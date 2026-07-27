@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;
 
 public class Cli {
 
@@ -19,7 +21,14 @@ public class Cli {
 				break; // Forces exit of the while loop
 			} else if (command.equals("date")){
 				output = LocalDate.now().toString();
-			} else {
+			} else if(command.equals("time")){
+				LocalDateTime time = LocalDateTime.now();
+				String timeString = time.toString();
+				String finalTime =timeString.substring(timeString.indexOf("T") + 1);
+
+				output = finalTime;
+			}
+			 else {
 				// String concatenation
 				output = "Command '" + command + "' not found.";
 			}
