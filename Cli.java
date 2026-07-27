@@ -17,6 +17,7 @@ public class Cli {
 		while (true) { // Infinite loop
 			String command = scanner.nextLine(); // Get input from console as a string
 			String output = ""; // A variable named output of type String
+			String commandPart[] = command.split(" ");
 			if (command.equals("exit")) {
 				break; // Forces exit of the while loop
 			} else if (command.equals("date")){
@@ -35,6 +36,16 @@ public class Cli {
 			} else if(command.equals("userhome")){
 				String userHome = System.getProperty("user.home");
 				output = userHome;
+			} else if (command.equals("os")){
+				String os = System.getProperty("os.name");
+				output = os;
+			} else if (commandPart[0].equals("printenv")){
+				String env = System.getenv(commandPart[1]);
+				if(env != null){
+				output = env;
+				} else {
+					output = "";
+				}
 			}
 			 else {
 				// String concatenation
