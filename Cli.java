@@ -25,8 +25,10 @@ public class Cli {
 				LocalDateTime time = LocalDateTime.now();
 				String timeString = time.toString();
 				String finalTime =timeString.substring(timeString.indexOf("T") + 1);
-
 				output = finalTime;
+			} else if(command.equals("datetime")){
+				String dateTime = LocalDateTime.now().toString();
+				output = dateTime;
 			}
 			 else {
 				// String concatenation
