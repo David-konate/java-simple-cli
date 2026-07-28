@@ -1,14 +1,4 @@
 # Fichiers compilés
 *.class
 
-# Fichiers de build (si tu utilises Maven ou Gradle plus tard)
-target/
-build/
-
-# Fichiers IDE
-.idea/
-*.iml
-.vscode/
-
-# Fichiers système
-.DS_Store
+#
