@@ -46,10 +46,8 @@ public class Cli {
 				} else {
 					output = "";
 				}
-			} else if(commandPart[0].equals("echo")){
-				for(int i = 1; i < commandPart.length; i++){
-					output += commandPart[i].toString() + " ";
-				}
+			} else if(commandPart[0]){
+				
 			}
 			 else {
 				// String concatenation
