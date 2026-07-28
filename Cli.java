@@ -18,35 +18,42 @@ public class Cli {
 		while (true) { // Infinite loop
 			String command = scanner.nextLine(); // Get input from console as a string
 			String output = ""; // A variable named output of type String
-			String commandPart[] = command.split(" ");
+			String commandPart[] = command.split(" ",2);
+			String commandName = commandPart[0];
+			String arguments;
+			if (commandPart.length > 1) {
+    				arguments = commandPart[1];
+			} else {
+    				arguments = "";
+			}
 			if (command.equals("exit")) {
 				break; // Forces exit of the while loop
-			} else if (command.equals("date")){
+			} else if (commandName.equals("date")){
 				output = LocalDate.now().toString();
-			} else if(command.equals("time")){
+			} else if(commandName.equals("time")){
 				output = Instant.now().toString();
 			} else if(command.equals("datetime")){
 				String dateTime = LocalDateTime.now().toString();
 				output = dateTime;
-			} else if(command.equals("useraccount")){
+			} else if(commandName.equals("useraccount")){
 				String name =  System.getProperty("user.name");
 				output = name;
-			} else if(command.equals("userhome")){
+			} else if(commandName.equals("userhome")){
 				String userHome = System.getProperty("user.home");
 				output = userHome;
-			} else if (command.equals("os")){
+			} else if (commandName.equals("os")){
 				String os = System.getProperty("os.name");
 				String version = System.getProperty("sun.arch.data.model");
 				output = os + " (" + version + ")";
-			} else if (commandPart[0].equals("printenv")){
-				if(commandPart.length > 1){
-				String env = System.getenv(command.replace("printenv ",""));
+			} else if (commandName.equals("printenv")){
+				if(arguments != ""){
+				String env = System.getenv(arguments);
 				output = env;
-				} else {
-					output = "";
-				}
-			} else if(commandPart[0].equals("echo")){
-				output = command.replace ("echo","");
+			} else {
+				output = arguments;
+			}
+			} else if(commandName.equals("echo")){
+				output = arguments;
 			}
 			 else {
 				// String concatenation
