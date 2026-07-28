@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter;
+import java.time.Instant;
 
 public class Cli {
 
@@ -23,10 +24,7 @@ public class Cli {
 			} else if (command.equals("date")){
 				output = LocalDate.now().toString();
 			} else if(command.equals("time")){
-				LocalDateTime time = LocalDateTime.now();
-				String timeString = time.toString();
-				String finalTime =timeString.substring(timeString.indexOf("T") + 1);
-				output = finalTime;
+				output = Instant.now().toString();
 			} else if(command.equals("datetime")){
 				String dateTime = LocalDateTime.now().toString();
 				output = dateTime;
@@ -38,18 +36,17 @@ public class Cli {
 				output = userHome;
 			} else if (command.equals("os")){
 				String os = System.getProperty("os.name");
-				output = os;
+				String version = System.getProperty("sun.arch.data.model");
+				output = os + " (" + version + ")";
 			} else if (commandPart[0].equals("printenv")){
-				String env = System.getenv(commandPart[1]);
-				if(env != null){
+				if(commandPart.length > 1){
+				String env = System.getenv(command.replace("printenv ",""));
 				output = env;
 				} else {
 					output = "";
 				}
 			} else if(commandPart[0].equals("echo")){
-				for(int i = 1; i < commandPart.length; i++){
-					output += commandPart[i].toString() + " ";
-				}
+				output = command.replace ("echo","");
 			}
 			 else {
 				// String concatenation
@@ -63,4 +60,6 @@ public class Cli {
     }
 
 }
+
+
 
