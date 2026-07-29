@@ -26,7 +26,7 @@ public class Cli {
 			} else {
     				arguments = "";
 			}
-			if (command.equals("exit")) {
+			if (commandName.equals("exit")) {
 				break; // Forces exit of the while loop
 			} else if (commandName.equals("date")){
 				output = LocalDate.now().toString();
@@ -43,12 +43,16 @@ public class Cli {
 				output = userHome;
 			} else if (commandName.equals("os")){
 				String os = System.getProperty("os.name");
-				String version = System.getProperty("sun.arch.data.model");
+				String version = System.getProperty("os.version");
 				output = os + " (" + version + ")";
 			} else if (commandName.equals("printenv")){
 				if(arguments != ""){
 				String env = System.getenv(arguments);
-				output = env;
+				if(env != null){
+					output = env;
+				} else {
+					output= "";
+				}
 			} else {
 				output = arguments;
 			}
