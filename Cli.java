@@ -3,6 +3,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter;
 import java.time.Instant;
+import java.util.Map; 
+import java.util.Set;
+
 
 public class Cli {
 
@@ -26,7 +29,7 @@ public class Cli {
 			} else {
     				arguments = "";
 			}
-			if (commandName.equals("exit")) {
+			if (commandName.equals("exit") || commandName.equals("logout")) {
 				break; // Forces exit of the while loop
 			} else if (commandName.equals("date")){
 				output = LocalDate.now().toString();
@@ -46,17 +49,17 @@ public class Cli {
 				String version = System.getProperty("os.version");
 				output = os + " (" + version + ")";
 			} else if (commandName.equals("printenv")){
-				if(arguments != ""){
-				String env = System.getenv(arguments);
-				if(env != null){
-					output = env;
-				} else {
-					output= "";
-				}
-			} else {
-				output = arguments;
-			}
-			} else if(commandName.equals("echo")){
+			        if(arguments != ""){
+                			output = System.getenv(arguments);
+        			} else {
+                			Map<String, String> envs = System.getenv();
+                			for(Map.Entry<String, String> env : envs.entrySet() ){
+                			String key = env.getKey();
+                			String value = env.getValue();
+                			output+= key + "=" + value + "\n";
+       	        			}
+        			}
+			} else if(commandName.equals("echo") || commandName.equals("print")){
 				output = arguments;
 			}
 			 else {
